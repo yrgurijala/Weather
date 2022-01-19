@@ -8,3 +8,6 @@ Version 0.1
   - Made it a RESTFul service
   - Controller accepts the data at http://localhost:8080/weather/addData
   - Controller return a sorted weather list at http://localhost:8080/weather/getDataSortedByCity
+
+Version 0.2
+  - Implemented a Rest Templates that posts data to "http://localhost:8081/weatherAlert/addData"

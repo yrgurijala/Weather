@@ -14,3 +14,8 @@ Version 0.2
 
 Version 0.3
   - Used AWS RDS MySQL database instead of local MySQL database
+
+Version 1.0
+  - Established Connection with AWS SNS Topic
+  - Sends Weather Alert object as a message to SNS Topic that is connected with a SQS Queue
+  - Used Object Mapper to convert Java Object to String message 

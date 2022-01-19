@@ -11,3 +11,6 @@ Version 0.1
 
 Version 0.2
   - Implemented a Rest Template that posts data to "http://localhost:8081/weatherAlert/addData"
+
+Version 0.3
+  - Used AWS RDS MySQL database instead of local MySQL database

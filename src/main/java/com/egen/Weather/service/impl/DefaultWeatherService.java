@@ -1,5 +1,6 @@
 package com.egen.Weather.service.impl;
 
+import com.egen.Weather.awsMessaging.WeatherAlertSns;
 import com.egen.Weather.model.Weather;
 import com.egen.Weather.model.WeatherAlert;
 import com.egen.Weather.repo.WeatherRepository;
@@ -16,18 +17,17 @@ import java.util.List;
 public class DefaultWeatherService implements WeatherService {
     private final WeatherRepository weatherRepository;
     private final RestTemplate restTemplate;
-    //private final WeatherAlertSns weatherAlertSns;
-    //private final ObjectMapper objectMapper;
+    private final WeatherAlertSns weatherAlertSns;
+    private final ObjectMapper objectMapper;
 
     public DefaultWeatherService(WeatherRepository weatherRepository,
-                                 RestTemplate restTemplate
-                                 //WeatherAlertSns weatherAlertSns,
-                                 //ObjectMapper objectMapper
-                                 ){
+                                 RestTemplate restTemplate,
+                                 WeatherAlertSns weatherAlertSns,
+                                 ObjectMapper objectMapper){
         this.weatherRepository = weatherRepository;
         this.restTemplate = restTemplate;
-        //this.weatherAlertSns = weatherAlertSns;
-        //this.objectMapper = objectMapper;
+        this.weatherAlertSns = weatherAlertSns;
+        this.objectMapper = objectMapper;
     }
 
     @Override
@@ -37,14 +37,14 @@ public class DefaultWeatherService implements WeatherService {
 
         if(weather.getTemperature() > 25){
             WeatherAlert weatherAlert = new WeatherAlert("Its too Hot", weather);
-            restTemplate.postForObject("http://localhost:8081/weatherAlert/addData", weatherAlert, boolean.class);
-            //weatherAlertSns.send("Temeparature Alert", objectMapper.writeValueAsString(weatherAlert));
+            //restTemplate.postForObject("http://localhost:8081/weatherAlert/addData", weatherAlert, boolean.class);
+            weatherAlertSns.send("Temeparature Alert", objectMapper.writeValueAsString(weatherAlert));
         }
 
         if(weather.getWind().getSpeed() > 6){
             WeatherAlert weatherAlert = new WeatherAlert("Its too windy", weather);
-            restTemplate.postForObject("http://localhost:8081/weatherAlert/addData", weatherAlert, boolean.class);
-            //weatherAlertSns.send("Wind Alert", objectMapper.writeValueAsString(weather));
+            //restTemplate.postForObject("http://localhost:8081/weatherAlert/addData", weatherAlert, boolean.class);
+            weatherAlertSns.send("Wind Alert", objectMapper.writeValueAsString(weather));
         }
 
         return true;

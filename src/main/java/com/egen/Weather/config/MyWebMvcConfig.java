@@ -1,5 +1,7 @@
 package com.egen.Weather.config;
 
+import com.amazonaws.services.sns.AmazonSNS;
+import org.springframework.cloud.aws.messaging.core.NotificationMessagingTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -26,10 +28,8 @@ public class MyWebMvcConfig {
         return new RestTemplate();
     }
 
-    /*
     @Bean
     public NotificationMessagingTemplate getNotificationMessagingTemplate(AmazonSNS amazonSNS){
         return new NotificationMessagingTemplate(amazonSNS);
     }
-     */
 }

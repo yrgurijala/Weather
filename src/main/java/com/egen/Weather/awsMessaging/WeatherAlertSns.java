@@ -1,4 +1,3 @@
-/*
 package com.egen.Weather.awsMessaging;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +22,3 @@ public class WeatherAlertSns {
         this.notificationMessagingTemplate.sendNotification(topic, message, subject);
     }
 }
-*/
